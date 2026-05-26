@@ -169,7 +169,11 @@ package final class SelectableFormItemView: FormItemView<SelectableFormItem> {
     private func updateImageView() {
         imageView.contentMode = .scaleAspectFit
         imageView.clipsToBounds = true
-        imageView.layer.borderWidth = 1.0 / UIScreen.main.nativeScale
+        #if os(visionOS)
+            imageView.layer.borderWidth = 0.5
+        #else
+            imageView.layer.borderWidth = 1.0 / UIScreen.main.nativeScale
+        #endif
         imageView.layer.borderColor = theme.colors.separator.cgColor
     }
 

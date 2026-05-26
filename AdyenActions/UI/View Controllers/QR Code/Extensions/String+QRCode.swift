@@ -4,6 +4,8 @@
 // This file is open source and available under the MIT license. See the LICENSE file for more info.
 //
 
+#if !os(visionOS)
+
 import CoreImage
 import UIKit
 
@@ -27,3 +29,5 @@ extension String {
         return UIImage(ciImage: transformedImage)
     }
 }
+
+#endif

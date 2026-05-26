@@ -4,6 +4,8 @@
 // This file is open source and available under the MIT license. See the LICENSE file for more info.
 //
 
+#if !os(visionOS)
+
 import Adyen
 import CoreGraphics
 import QuartzCore
@@ -146,3 +148,5 @@ internal class VoucherCardView: UIView {
     }
 
 }
+
+#endif

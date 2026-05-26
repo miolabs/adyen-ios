@@ -4,7 +4,11 @@
 // This file is open source and available under the MIT license. See the LICENSE file for more info.
 //
 
+#if !os(visionOS)
+
+#if canImport(Adyen3DS2)
 import Adyen3DS2
+
 #if canImport(AdyenUI)
     import AdyenUI
 #endif
@@ -147,3 +151,7 @@ private extension CornerRounding {
         }
     }
 }
+
+#endif
+
+#endif

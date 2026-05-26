@@ -31,10 +31,18 @@ public struct ListItemStyle: ViewStyle {
         textAlignment: .natural
     )
     
+    private static var hairlineBorderWidth: CGFloat {
+        #if os(visionOS)
+            return 0.5
+        #else
+            return 1.0 / UIScreen.main.nativeScale
+        #endif
+    }
+
     /// The image style.
     public var image = ImageStyle(
         borderColor: UIColor.Adyen.componentSeparator,
-        borderWidth: 1.0 / UIScreen.main.nativeScale,
+        borderWidth: ListItemStyle.hairlineBorderWidth,
         cornerRadius: 4.0,
         clipsToBounds: true,
         contentMode: .scaleAspectFit

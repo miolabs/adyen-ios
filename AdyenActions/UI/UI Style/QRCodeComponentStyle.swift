@@ -4,6 +4,8 @@
 // This file is open source and available under the MIT license. See the LICENSE file for more info.
 //
 
+#if !os(visionOS)
+
 import Adyen
 import UIKit
 #if canImport(AdyenUI)
@@ -53,3 +55,5 @@ public struct QRCodeComponentStyle: ViewStyle {
     /// Initializes the QR code component style with the default style
     public init() {}
 }
+
+#endif

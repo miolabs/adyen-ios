@@ -4,6 +4,8 @@
 // This file is open source and available under the MIT license. See the LICENSE file for more info.
 //
 
+#if !os(visionOS)
+
 import Foundation
 
 /// This is excluded from the Swift Package, since swift packages has different code to access internal resources.
@@ -22,3 +24,5 @@ extension Bundle {
     }()
 
 }
+
+#endif

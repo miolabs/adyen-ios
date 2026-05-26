@@ -4,6 +4,8 @@
 // This file is open source and available under the MIT license. See the LICENSE file for more info.
 //
 
+#if !os(visionOS)
+
 import Adyen
 
 /// A payment method for OXXO.
@@ -17,3 +19,5 @@ public typealias MultibancoPaymentMethod = InstantPaymentMethod
 
 /// A component for handling Multibanco payment.
 public typealias MultibancoComponent = InstantPaymentComponent
+
+#endif

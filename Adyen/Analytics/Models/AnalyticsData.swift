@@ -44,7 +44,11 @@ internal struct AnalyticsData: Encodable {
     internal let referrer: String = Bundle.main.bundleIdentifier ?? ""
 
     internal var screenWidth: Int {
-        Int(UIScreen.main.nativeBounds.width)
+        #if os(visionOS)
+            return 0
+        #else
+            return Int(UIScreen.main.nativeBounds.width)
+        #endif
     }
 
     internal let containerWidth: Int? = nil

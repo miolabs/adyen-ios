@@ -4,6 +4,8 @@
 // This file is open source and available under the MIT license. See the LICENSE file for more info.
 //
 
+#if !os(visionOS)
+
 internal typealias VoidHandler = () -> Void
 
 // swiftlint:disable file_length
@@ -549,3 +551,5 @@ internal typealias VoidHandler = () -> Void
 #endif
 
 // swiftlint:enable file_length
+
+#endif

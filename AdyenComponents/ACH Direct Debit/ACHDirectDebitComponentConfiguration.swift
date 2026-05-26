@@ -4,6 +4,8 @@
 // This file is open source and available under the MIT license. See the LICENSE file for more info.
 //
 
+#if !os(visionOS)
+
 import Adyen
 import Foundation
 import UIKit
@@ -92,3 +94,5 @@ extension ACHDirectDebitComponentConfiguration {
         return config
     }
 }
+
+#endif

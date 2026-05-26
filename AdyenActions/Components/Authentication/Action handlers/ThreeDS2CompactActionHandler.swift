@@ -4,6 +4,8 @@
 // This file is open source and available under the MIT license. See the LICENSE file for more info.
 //
 
+#if !os(visionOS)
+
 import Adyen
 @_spi(AdyenInternal) import class Adyen.Analytics
 #if canImport(AdyenUI)
@@ -127,3 +129,5 @@ internal final class ThreeDS2CompactActionHandler: AnyThreeDS2ActionHandler, Com
         }
     }
 }
+
+#endif

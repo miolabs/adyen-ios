@@ -65,7 +65,11 @@ private extension KeyboardTransition {
         guard let bounds = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? CGRect else {
             return .zero
         }
-        
-        return bounds.intersection(UIScreen.main.bounds)
+
+        #if os(visionOS)
+            return bounds
+        #else
+            return bounds.intersection(UIScreen.main.bounds)
+        #endif
     }
 }

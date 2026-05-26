@@ -4,6 +4,8 @@
 // This file is open source and available under the MIT license. See the LICENSE file for more info.
 //
 
+#if !os(visionOS)
+
 #if canImport(AdyenUI)
     import AdyenUI
     @_spi(AdyenInternal) import class AdyenUI.FormViewController
@@ -35,3 +37,5 @@ public struct CustomFormItemInjector<T: FormItem>: FormItemInjector {
     }
     
 }
+
+#endif

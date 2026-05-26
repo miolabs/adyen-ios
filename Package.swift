@@ -6,7 +6,7 @@ import PackageDescription
 let package = Package(
     name: "Adyen",
     defaultLocalization: "en-us",
-    platforms: [.iOS(.v16)],
+    platforms: [.iOS(.v16), .visionOS(.v1)],
     products: [
         .library(
             name: "Adyen",
@@ -28,10 +28,10 @@ let package = Package(
             name: "AdyenCard",
             targets: ["AdyenCard"]
         ),
-        .library(
-            name: "AdyenCardScanner",
-            targets: ["AdyenCardScanner"]
-        ),
+//        .library(
+//            name: "AdyenCardScanner",
+//            targets: ["AdyenCardScanner"]
+//        ),
         .library(
             name: "AdyenComponents",
             targets: ["AdyenComponents"]
@@ -44,22 +44,22 @@ let package = Package(
             name: "AdyenDropIn",
             targets: ["AdyenDropIn"]
         ),
-        .library(
-            name: "AdyenWeChatPay",
-            targets: ["AdyenWeChatPay"]
-        ),
-        .library(
-            name: "AdyenCashAppPay",
-            targets: ["AdyenCashAppPay"]
-        ),
-        .library(
-            name: "AdyenTwint",
-            targets: ["AdyenTwint"]
-        ),
-        .library(
-            name: "AdyenDelegatedAuthentication",
-            targets: ["AdyenDelegatedAuthentication"]
-        ),
+//        .library(
+//            name: "AdyenWeChatPay",
+//            targets: ["AdyenWeChatPay"]
+//        ),
+//        .library(
+//            name: "AdyenCashAppPay",
+//            targets: ["AdyenCashAppPay"]
+//        ),
+//        .library(
+//            name: "AdyenTwint",
+//            targets: ["AdyenTwint"]
+//        ),
+//        .library(
+//            name: "AdyenDelegatedAuthentication",
+//            targets: ["AdyenDelegatedAuthentication"]
+//        ),
         .library(
             name: "AdyenCheckout",
             targets: ["AdyenCheckout"]
@@ -70,26 +70,26 @@ let package = Package(
         )
     ],
     dependencies: [
-        .package(
-            url: "https://github.com/Adyen/adyen-3ds2-ios",
-            exact: "2.4.4"
-        ),
-        .package(
-            url: "https://github.com/Adyen/adyen-authentication-ios",
-            exact: "3.2.0"
-        ),
+//        .package(
+//            url: "https://github.com/Adyen/adyen-3ds2-ios",
+//            exact: "2.4.4"
+//        ),
+//        .package(
+//            url: "https://github.com/Adyen/adyen-authentication-ios",
+//            exact: "3.2.0"
+//        ),
         .package(
             url: "https://github.com/Adyen/adyen-networking-ios",
             exact: "3.0.1"
         ),
-        .package(
-            url: "https://github.com/Adyen/adyen-wechatpay-ios",
-            exact: "2.2.0"
-        ),
-        .package(
-            url: "https://github.com/cashapp/cash-app-pay-ios-sdk",
-            exact: "0.6.2"
-        )
+//        .package(
+//            url: "https://github.com/Adyen/adyen-wechatpay-ios",
+//            exact: "2.2.0"
+//        ),
+//        .package(
+//            url: "https://github.com/cashapp/cash-app-pay-ios-sdk",
+//            exact: "0.6.2"
+//        )
     ],
     targets: [
         .target(
@@ -120,7 +120,7 @@ let package = Package(
             dependencies: [
                 .target(name: "Adyen"),
                 .target(name: "AdyenUI"),
-                .product(name: "Adyen3DS2", package: "adyen-3ds2-ios")
+//                .product(name: "Adyen3DS2", package: "adyen-3ds2-ios")
             ],
             path: "AdyenActions",
             exclude: [
@@ -141,13 +141,13 @@ let package = Package(
                 "Utilities/Non SPM Bundle Extension" // This is to exclude `BundleExtension.swift` file, since swift packages has different code to access internal resources.
             ]
         ),
-        .target(
-            name: "AdyenCardScanner",
-            path: "AdyenCardScanner",
-            exclude: [
-                "Info.plist"
-            ]
-        ),
+//        .target(
+//            name: "AdyenCardScanner",
+//            path: "AdyenCardScanner",
+//            exclude: [
+//                "Info.plist"
+//            ]
+//        ),
         .target(
             name: "AdyenComponents",
             dependencies: [
@@ -178,35 +178,35 @@ let package = Package(
             path: "AdyenDropIn",
             exclude: ["Info.plist"]
         ),
-        .target(
-            name: "AdyenWeChatPay",
-            dependencies: [
-                .product(name: "AdyenWeChatPayInternal", package: "adyen-wechatpay-ios"),
-                .target(name: "AdyenActions")
-            ],
-            path: "AdyenWeChatPay/WeChatPayActionComponent"
-        ),
-        .target(
-            name: "AdyenCashAppPay",
-            dependencies: [
-                .target(name: "Adyen"),
-                .target(name: "AdyenUI"),
-                .product(name: "PayKit", package: "cash-app-pay-ios-sdk"),
-                .product(name: "PayKitUI", package: "cash-app-pay-ios-sdk")
-            ],
-            path: "AdyenCashAppPay",
-            exclude: ["Info.plist"]
-        ),
-        .target(
-            name: "AdyenTwint",
-            dependencies: [
-                .target(name: "Adyen"),
-                .target(name: "AdyenUI"),
-                .target(name: "TwintSDK")
-            ],
-            path: "AdyenTwint",
-            exclude: ["Info.plist"]
-        ),
+//        .target(
+//            name: "AdyenWeChatPay",
+//            dependencies: [
+//                .product(name: "AdyenWeChatPayInternal", package: "adyen-wechatpay-ios"),
+//                .target(name: "AdyenActions")
+//            ],
+//            path: "AdyenWeChatPay/WeChatPayActionComponent"
+//        ),
+//        .target(
+//            name: "AdyenCashAppPay",
+//            dependencies: [
+//                .target(name: "Adyen"),
+//                .target(name: "AdyenUI"),
+//                .product(name: "PayKit", package: "cash-app-pay-ios-sdk"),
+//                .product(name: "PayKitUI", package: "cash-app-pay-ios-sdk")
+//            ],
+//            path: "AdyenCashAppPay",
+//            exclude: ["Info.plist"]
+//        ),
+//        .target(
+//            name: "AdyenTwint",
+//            dependencies: [
+//                .target(name: "Adyen"),
+//                .target(name: "AdyenUI"),
+//                .target(name: "TwintSDK")
+//            ],
+//            path: "AdyenTwint",
+//            exclude: ["Info.plist"]
+//        ),
         .target(
             name: "AdyenCheckout",
             dependencies: [
@@ -228,15 +228,15 @@ let package = Package(
             path: "AdyenUI",
             exclude: ["Info.plist"]
         ),
-        .binaryTarget(
-            name: "TwintSDK",
-            path: "XCFramework/Dynamic/TwintSDK.xcframework"
-        ),
-        .target(
-            name: "AdyenDelegatedAuthentication",
-            dependencies: [.product(name: "AdyenAuthentication", package: "adyen-authentication-ios")],
-            path: "AdyenDelegatedAuthentication",
-            exclude: ["Info.plist"]
-        )
+//        .binaryTarget(
+//            name: "TwintSDK",
+//            path: "XCFramework/Dynamic/TwintSDK.xcframework"
+//        ),
+//        .target(
+//            name: "AdyenDelegatedAuthentication",
+//            dependencies: [.product(name: "AdyenAuthentication", package: "adyen-authentication-ios")],
+//            path: "AdyenDelegatedAuthentication",
+//            exclude: ["Info.plist"]
+//        )
     ]
 )

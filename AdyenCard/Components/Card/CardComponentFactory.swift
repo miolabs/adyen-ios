@@ -4,6 +4,8 @@
 // This file is open source and available under the MIT license. See the LICENSE file for more info.
 //
 
+#if !os(visionOS)
+
 import Adyen
 
 // TODO: Since stored card component may be changed, maybe we won't need this generic option
@@ -43,3 +45,5 @@ package struct CardComponentFactory<CardMethod: AnyCardPaymentMethod>: PaymentCo
         CardConfiguration()
     }
 }
+
+#endif

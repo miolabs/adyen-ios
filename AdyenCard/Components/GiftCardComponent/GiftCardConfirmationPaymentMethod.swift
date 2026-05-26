@@ -4,6 +4,8 @@
 // This file is open source and available under the MIT license. See the LICENSE file for more info.
 //
 
+#if !os(visionOS)
+
 import Adyen
 @_spi(AdyenInternal) import protocol Adyen.PaymentComponentBuilder
 
@@ -78,3 +80,5 @@ internal struct PartialConfirmationPaymentMethod: PaymentMethod {
         fatalError("This class should never be encoded.")
     }
 }
+
+#endif

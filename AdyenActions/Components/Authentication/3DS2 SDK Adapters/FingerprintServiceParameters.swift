@@ -4,6 +4,8 @@
 // This file is open source and available under the MIT license. See the LICENSE file for more info.
 //
 
+#if !os(visionOS)
+
 #if canImport(AdyenUI)
     import AdyenUI
 #endif
@@ -17,3 +19,5 @@ internal struct FingerprintServiceParameters {
     internal let theme: CheckoutTheme
     internal let threeDSMessageVersion: String
 }
+
+#endif

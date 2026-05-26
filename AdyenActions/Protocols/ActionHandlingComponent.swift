@@ -4,6 +4,8 @@
 // This file is open source and available under the MIT license. See the LICENSE file for more info.
 //
 
+#if !os(visionOS)
+
 import Adyen
 import Foundation
 
@@ -16,3 +18,5 @@ public protocol ActionHandlingComponent: Component {
     ///   - action: The action object.
     func handle(_ action: Action)
 }
+
+#endif

@@ -4,6 +4,8 @@
 // This file is open source and available under the MIT license. See the LICENSE file for more info.
 //
 
+#if !os(visionOS)
+
 internal extension AuthenticationComponent {
     struct ThreeDSConfiguration: Decodable, ThreeDSFeatureChecker {
         private let version: String
@@ -33,3 +35,5 @@ internal extension AuthenticationComponent {
         }
     }
 }
+
+#endif

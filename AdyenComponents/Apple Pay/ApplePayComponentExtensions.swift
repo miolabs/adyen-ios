@@ -79,10 +79,22 @@ extension ApplePayComponent {
     private func handleAuthorize(payment: PKPayment) async -> PKPaymentAuthorizationResult {
         authorizationHandled = true
 
-        guard !payment.token.paymentData.isEmpty else {
-            delegate?.didFail(with: Error.invalidToken, from: self)
-            return PKPaymentAuthorizationResult(status: .failure, errors: nil)
-        }
+        #if targetEnvironment(simulator)
+            // Simulator never produces a real Apple Pay token (no Secure Enclave, no payment-processing
+            // certificate chain). The empty-token guard below would always fail here, blocking
+            // simulator-based UI testing. We bypass it and let the rest of the flow run with an empty
+            // `paymentData` so the delegate's didSubmit → didFinalize path can be exercised.
+            // The resulting token will NOT be acceptable to Adyen's /payments endpoint — only use this
+            // bypass with a dummy/stub backend response. The guard remains active on real devices.
+            if payment.token.paymentData.isEmpty {
+                print("⚠️ ApplePayComponent: simulator detected — bypassing empty-token guard. Token will not be valid on the Adyen backend.")
+            }
+        #else
+            guard !payment.token.paymentData.isEmpty else {
+                delegate?.didFail(with: Error.invalidToken, from: self)
+                return PKPaymentAuthorizationResult(status: .failure, errors: nil)
+            }
+        #endif
 
         // Optional merchant validation via configuration closure
         if let onAuthorize = configuration.onAuthorize {

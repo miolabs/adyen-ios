@@ -4,6 +4,8 @@
 // This file is open source and available under the MIT license. See the LICENSE file for more info.
 //
 
+#if !os(visionOS)
+
 import Adyen
 
 extension UnknownError {
@@ -11,3 +13,5 @@ extension UnknownError {
     internal static let serviceIsNil = UnknownError(errorDescription: "ADYService is nil.")
     internal static let resultAndErrorAreNil = UnknownError(errorDescription: "Both error and result are nil, this should never happen.")
 }
+
+#endif

@@ -4,6 +4,8 @@
 // This file is open source and available under the MIT license. See the LICENSE file for more info.
 //
 
+#if !os(visionOS)
+
 import Adyen
 import Foundation
 
@@ -96,3 +98,5 @@ internal struct ThreeDSResult: AdditionalDetails, Decodable {
         try container.encode(payload, forKey: .payload)
     }
 }
+
+#endif

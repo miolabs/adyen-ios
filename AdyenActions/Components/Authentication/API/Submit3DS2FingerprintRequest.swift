@@ -4,6 +4,8 @@
 // This file is open source and available under the MIT license. See the LICENSE file for more info.
 //
 
+#if !os(visionOS)
+
 import Adyen
 import AdyenNetworking
 import Foundation
@@ -43,3 +45,5 @@ internal struct Submit3DS2FingerprintRequest: APIRequest {
     }
 
 }
+
+#endif

@@ -4,6 +4,8 @@
 // This file is open source and available under the MIT license. See the LICENSE file for more info.
 //
 
+#if !os(visionOS)
+
 import Adyen
 
 /// Contains the details supplied by the BACS Direct Debit component.
@@ -56,3 +58,5 @@ public struct BACSDirectDebitDetails: PaymentMethodDetails {
         case sdkData
     }
 }
+
+#endif

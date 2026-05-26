@@ -4,6 +4,10 @@
 // This file is open source and available under the MIT license. See the LICENSE file for more info.
 //
 
+#if !os(visionOS)
+
+#if canImport(Adyen3DS2)
+
 import Adyen
 import Adyen3DS2
 import Foundation
@@ -42,3 +46,7 @@ internal final class ADYServiceAdapter: AnyADYService {
     }
     
 }
+
+#endif
+
+#endif

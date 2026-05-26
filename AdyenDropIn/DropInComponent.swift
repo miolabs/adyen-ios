@@ -4,6 +4,8 @@
 // This file is open source and available under the MIT license. See the LICENSE file for more info.
 //
 
+#if !os(visionOS)
+
 import Adyen
 @_spi(AdyenInternal) import protocol Adyen.PresentableComponent
 
@@ -31,7 +33,6 @@ import UIKit
 @MainActor
 public final class DropInComponent: NSObject,
     AnyDropInComponent,
-    ActionHandlingComponent,
     LoadingComponent {
 
     // MARK: - Properties
@@ -335,6 +336,10 @@ extension DropInComponent: InstallmentConfigurationAware {
     }
 }
 
+#if !os(visionOS)
+    extension DropInComponent: ActionHandlingComponent {}
+#endif
+
 // ============= PAYMENT METHOD LIST ===============
 
 //    func didLoad() {
@@ -368,3 +373,5 @@ extension DropInComponent: InstallmentConfigurationAware {
 //            )
 //        }
 //    }
+
+#endif

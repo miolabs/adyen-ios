@@ -4,6 +4,8 @@
 // This file is open source and available under the MIT license. See the LICENSE file for more info.
 //
 
+#if !os(visionOS)
+
 import Foundation
 
 /// A typealias for a closure that handles a URL through which the application was opened.
@@ -45,3 +47,5 @@ package enum RedirectListener {
     }
     
 }
+
+#endif

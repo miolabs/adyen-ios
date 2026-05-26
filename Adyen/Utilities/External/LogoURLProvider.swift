@@ -72,12 +72,16 @@ public final class LogoURLProvider {
     }
     
     private static var logoPathSuffix: String {
-        let scale = Int(UIScreen.main.scale)
-        if scale > 1 {
-            return "@\(scale)x.png"
-        }
-        
-        return ".png"
+        #if os(visionOS)
+            return "@2x.png"
+        #else
+            let scale = Int(UIScreen.main.scale)
+            if scale > 1 {
+                return "@\(scale)x.png"
+            }
+
+            return ".png"
+        #endif
     }
 }
 

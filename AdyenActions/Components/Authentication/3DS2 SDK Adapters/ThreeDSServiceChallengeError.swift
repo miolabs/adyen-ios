@@ -4,6 +4,8 @@
 // This file is open source and available under the MIT license. See the LICENSE file for more info.
 //
 
+#if !os(visionOS)
+
 import Foundation
 
 /// Errors that could happen during a challenge
@@ -17,3 +19,5 @@ internal enum ThreeDSServiceChallengeError: Error, Equatable {
     /// The sdk faced an error performing the challenge.
     case challengeError(errorPayload: String)
 }
+
+#endif

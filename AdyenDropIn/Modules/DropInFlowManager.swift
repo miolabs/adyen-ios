@@ -4,6 +4,8 @@
 // This file is open source and available under the MIT license. See the LICENSE file for more info.
 //
 
+#if !os(visionOS)
+
 import Adyen
 @_spi(AdyenInternal) import protocol Adyen.PaymentComponent
 #if canImport(AdyenActions)
@@ -58,16 +60,18 @@ internal class DropInFlowManager: DropInFlowManaging {
 
     // MARK: - Private
 
-    private lazy var actionComponent: CheckoutActionComponent = {
-        let actionComponent = CheckoutActionComponent(context: context)
-        actionComponent.delegate = self
-        actionComponent.presentationDelegate = self
-        actionComponent.configuration.style = configuration.style.actionComponent
-        actionComponent.configuration.localizationParameters = configuration.localizationParameters
-        actionComponent.configuration.authentication = configuration.actionComponent.authentication
-        actionComponent.configuration.twint = configuration.actionComponent.twint
-        return actionComponent
-    }()
+    #if !os(visionOS)
+        private lazy var actionComponent: CheckoutActionComponent = {
+            let actionComponent = CheckoutActionComponent(context: context)
+            actionComponent.delegate = self
+            actionComponent.presentationDelegate = self
+            actionComponent.configuration.style = configuration.style.actionComponent
+            actionComponent.configuration.localizationParameters = configuration.localizationParameters
+            actionComponent.configuration.authentication = configuration.actionComponent.authentication
+            actionComponent.configuration.twint = configuration.actionComponent.twint
+            return actionComponent
+        }()
+    #endif
 
     // MARK: - DropInFlowManaging
 
@@ -95,7 +99,9 @@ internal class DropInFlowManager: DropInFlowManaging {
     }
 
     internal func handle(action: Action) {
-        actionComponent.handle(action)
+        #if !os(visionOS)
+            actionComponent.handle(action)
+        #endif
     }
 }
 
@@ -139,3 +145,5 @@ extension DropInFlowManager: PresentationDelegate {
         actionPresenter?.present(actionComponent: component)
     }
 }
+
+#endif

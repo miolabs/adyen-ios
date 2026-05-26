@@ -4,6 +4,8 @@
 // This file is open source and available under the MIT license. See the LICENSE file for more info.
 //
 
+#if !os(visionOS)
+
 import Adyen
 import Foundation
 
@@ -52,3 +54,5 @@ public typealias OpenBankingDetails = IssuerListDetails
 
 /// Contains the details supplied by the Online Banking Poland component.
 public typealias OnlineBankingPolandDetails = IssuerListDetails
+
+#endif

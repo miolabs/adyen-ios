@@ -54,14 +54,19 @@ public final class CopyLabelView: UIView, Localizable {
     }
 
     @objc private func handleTap() {
-        guard let superview else { return }
-        becomeFirstResponder()
-        let menuController = UIMenuController.shared
-        let copyItem = UIMenuItem(title: localizedString(.buttonCopy, localizationParameters), action: #selector(handleCopy))
-        menuController.menuItems = [copyItem]
-        menuController.setTargetRect(frame, in: superview)
-        menuController.setMenuVisible(true, animated: true)
-        backgroundColor = UIColor.Adyen.lightGray
+        #if os(visionOS)
+            // Copy-on-tap menu is not available on visionOS; fall back to clipboard copy directly.
+            handleCopy()
+        #else
+            guard let superview else { return }
+            becomeFirstResponder()
+            let menuController = UIMenuController.shared
+            let copyItem = UIMenuItem(title: localizedString(.buttonCopy, localizationParameters), action: #selector(handleCopy))
+            menuController.menuItems = [copyItem]
+            menuController.setTargetRect(frame, in: superview)
+            menuController.setMenuVisible(true, animated: true)
+            backgroundColor = UIColor.Adyen.lightGray
+        #endif
     }
 
     override public var canBecomeFirstResponder: Bool {

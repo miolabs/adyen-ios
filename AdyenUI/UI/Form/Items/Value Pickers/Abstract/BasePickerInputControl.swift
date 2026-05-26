@@ -43,13 +43,15 @@ internal class BasePickerInputControl: UIControl, PickerTextInputControl {
 
     internal var onDidTap: (() -> Void)?
 
-    override internal var inputView: UIView? {
-        customInputView
-    }
-    
-    override internal var inputAccessoryView: UIView? {
-        customInputAccessoryView
-    }
+    #if !os(visionOS)
+        override internal var inputView: UIView? {
+            customInputView
+        }
+
+        override internal var inputAccessoryView: UIView? {
+            customInputAccessoryView
+        }
+    #endif
 
     override internal var canBecomeFirstResponder: Bool {
         true

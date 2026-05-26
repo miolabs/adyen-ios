@@ -61,6 +61,20 @@ public final class AdyenContext {
         self.analyticsProvider = analyticsProvider
     }
 
+    /// Public convenience initializer for component-only flows (e.g. Apple Pay on visionOS)
+    /// that don't go through `AdyenSession`/`AdyenCheckout`. No analytics, no encryption key.
+    public convenience init(
+        apiContext: APIContext,
+        amount: Amount? = nil
+    ) {
+        self.init(
+            apiContext: apiContext,
+            amount: amount,
+            publicKey: "",
+            analyticsProvider: nil
+        )
+    }
+
     private static func createAnalyticsProvider(
         analyticsApiContext: APIContext?,
         checkoutAttemptId: String?,

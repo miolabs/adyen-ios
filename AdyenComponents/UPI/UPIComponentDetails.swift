@@ -4,6 +4,8 @@
 // This file is open source and available under the MIT license. See the LICENSE file for more info.
 //
 
+#if !os(visionOS)
+
 import Adyen
 
 /// Contains the details supplied by the UPI component.
@@ -39,3 +41,5 @@ public struct UPIComponentDetails: PaymentMethodDetails {
         self.appId = appId
     }
 }
+
+#endif

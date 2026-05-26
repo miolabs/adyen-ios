@@ -4,6 +4,8 @@
 // This file is open source and available under the MIT license. See the LICENSE file for more info.
 //
 
+#if !os(visionOS)
+
 import Foundation
 
 /// Payment methods list related configurations.
@@ -14,3 +16,5 @@ public struct PaymentMethodListConfiguration {
     /// Indicates whether to allow shoppers to disable/delete stored payment methods
     public var allowDisablingStoredPaymentMethods: Bool = false
 }
+
+#endif

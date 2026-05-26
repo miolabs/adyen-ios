@@ -4,6 +4,8 @@
 // This file is open source and available under the MIT license. See the LICENSE file for more info.
 //
 
+#if !os(visionOS)
+
 import Adyen
 import Foundation
 
@@ -19,3 +21,5 @@ public protocol PartialPaymentMethodDetails: PaymentMethodDetails {
     /// The encrypted security code.
     var encryptedSecurityCode: String { get }
 }
+
+#endif

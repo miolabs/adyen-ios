@@ -37,6 +37,18 @@ public struct ApplePayPaymentMethod: PaymentMethod {
         self.brands = brands
     }
 
+    /// Public initializer for client-constructed Apple Pay payment methods
+    /// (used when not going through `/paymentMethods` JSON decoding).
+    public init(
+        name: String = "Apple Pay",
+        brands: [String]? = nil
+    ) {
+        self.type = .applePay
+        self.name = name
+        self.merchantProvidedDisplayInformation = nil
+        self.brands = brands
+    }
+
     // MARK: - Private
 
     private enum CodingKeys: String, CodingKey {

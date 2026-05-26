@@ -4,6 +4,8 @@
 // This file is open source and available under the MIT license. See the LICENSE file for more info.
 //
 
+#if !os(visionOS)
+
 import Adyen
 @_spi(AdyenInternal) import protocol Adyen.PresentableComponent
 
@@ -213,3 +215,5 @@ public typealias OpenBankingComponent = IssuerListComponent
 
 /// Provides an issuer selection list for onlineBanking Poland .
 public typealias OnlineBankingPolandComponent = IssuerListComponent
+
+#endif

@@ -4,6 +4,8 @@
 // This file is open source and available under the MIT license. See the LICENSE file for more info.
 //
 
+#if !os(visionOS)
+
 import Adyen
 #if canImport(AdyenCard)
     import AdyenCard
@@ -26,17 +28,21 @@ public extension DropInComponent {
     /// Contains the configuration for the drop in component and the embedded payment method components.
     final class Configuration: AnyPersonalInformationConfiguration {
 
-        /// Card component related configuration.
-        public var card = Card()
-        
+        #if !os(visionOS)
+            /// Card component related configuration.
+            public var card = Card()
+        #endif
+
         /// The Apple Pay configuration.
         public var applePay: ApplePayConfiguration?
-        
+
         /// Payment methods list related configurations.
         public var paymentMethodsList = PaymentMethodListConfiguration()
-        
-        /// Action components related configurations.
-        public var actionComponent = ActionComponentConfiguration()
+
+        #if !os(visionOS)
+            /// Action components related configurations.
+            public var actionComponent = ActionComponentConfiguration()
+        #endif
         
         /// Shopper related information
         public var shopperInformation: PrefilledShopperInformation?
@@ -59,17 +65,19 @@ public extension DropInComponent {
         /// Indicates the UI style configuration of the drop in component.
         public var theme: CheckoutTheme = .default
 
-        /// Boleto component configuration.
-        public var boleto: Boleto = .init()
+        #if !os(visionOS)
+            /// Boleto component configuration.
+            public var boleto: Boleto = .init()
 
-        /// Configuration for the Cash App Pay component
-        public var cashAppPay: CashAppPay?
+            /// Configuration for the Cash App Pay component
+            public var cashAppPay: CashAppPay?
 
-        /// The ACH Direct Debit configuration.
-        public var ach: ACH = .init()
+            /// The ACH Direct Debit configuration.
+            public var ach: ACH = .init()
 
-        /// Gift card component configuration
-        public var giftCard: GiftCard = .init()
+            /// Gift card component configuration
+            public var giftCard: GiftCard = .init()
+        #endif
 
         /// Initializes the drop in configuration.
         /// - Parameters:
@@ -89,24 +97,27 @@ public extension DropInComponent {
         }
     }
     
-    /// Action components related configurations.
-    struct ActionComponentConfiguration {
-        
-        public init() { /* Empty initializer */ }
-        
-        /// Three DS configurations
-        public var authentication: AuthenticationConfiguration = .init()
+    #if !os(visionOS)
+        /// Action components related configurations.
+        struct ActionComponentConfiguration {
 
-        /// Twint configurations
-        public var twint: TwintActionConfiguration?
-    }
+            public init() { /* Empty initializer */ }
 
-    /// Boleto component configuration.
-    struct Boleto {
-        /// Indicates whether to show sendCopyByEmail checkbox and email text field
-        public var showEmailAddress: Bool = true
-    }
+            /// Three DS configurations
+            public var authentication: AuthenticationConfiguration = .init()
 
+            /// Twint configurations
+            public var twint: TwintActionConfiguration?
+        }
+
+        /// Boleto component configuration.
+        struct Boleto {
+            /// Indicates whether to show sendCopyByEmail checkbox and email text field
+            public var showEmailAddress: Bool = true
+        }
+    #endif
+
+    #if !os(visionOS)
     /// ACH Component configuration specific to Drop In Component.
     struct ACH {
         
@@ -258,4 +269,7 @@ public extension DropInComponent {
             self.storePaymentMethod = storePaymentMethod
         }
     }
+    #endif
 }
+
+#endif

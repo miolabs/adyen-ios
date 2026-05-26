@@ -27,10 +27,18 @@ public struct FormTextItemStyle: FormValueItemStyle {
     /// The text field's placeholder text style.
     public var placeholderText: TextStyle?
     
+    private static var hairlineBorderWidth: CGFloat {
+        #if os(visionOS)
+            return 0.5
+        #else
+            return 1.0 / UIScreen.main.nativeScale
+        #endif
+    }
+
     /// The icons' style.
     public var icon = ImageStyle(
         borderColor: UIColor.Adyen.componentSeparator,
-        borderWidth: 1.0 / UIScreen.main.nativeScale,
+        borderWidth: FormTextItemStyle.hairlineBorderWidth,
         cornerRadius: 4.0,
         clipsToBounds: true,
         contentMode: .scaleAspectFit

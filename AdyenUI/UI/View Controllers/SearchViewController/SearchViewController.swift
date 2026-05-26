@@ -53,7 +53,11 @@ public class SearchViewController: UIViewController, AdyenObserver {
     }
 
     internal lazy var loadingView: UIActivityIndicatorView = {
-        let loadingView = UIActivityIndicatorView(style: .whiteLarge)
+        #if os(visionOS)
+            let loadingView = UIActivityIndicatorView(style: .large)
+        #else
+            let loadingView = UIActivityIndicatorView(style: .whiteLarge)
+        #endif
         loadingView.color = .Adyen.componentLoadingMessageColor
         loadingView.hidesWhenStopped = true
         loadingView.translatesAutoresizingMaskIntoConstraints = false

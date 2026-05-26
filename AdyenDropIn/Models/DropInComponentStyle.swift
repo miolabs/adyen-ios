@@ -4,6 +4,8 @@
 // This file is open source and available under the MIT license. See the LICENSE file for more info.
 //
 
+#if !os(visionOS)
+
 import Adyen
 #if canImport(AdyenActions)
     import AdyenActions
@@ -28,8 +30,10 @@ public extension DropInComponent {
         /// Indicates any form component UI style.
         public var formComponent = FormComponentStyle()
         
-        /// Indicates the UI configuration of Action Components
-        public var actionComponent = ActionComponentStyle()
+        #if !os(visionOS)
+            /// Indicates the UI configuration of Action Components
+            public var actionComponent = ActionComponentStyle()
+        #endif
         
         /// Indicates the UI configuration for the Apple Pay component.
         public var applePay = ApplePayStyle()
@@ -54,3 +58,5 @@ public extension DropInComponent {
         }
     }
 }
+
+#endif

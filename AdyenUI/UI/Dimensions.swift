@@ -18,13 +18,21 @@ public enum Dimensions {
     public static var maxAdaptiveWidth: CGFloat = 360
 
     public static var greatestPresentableScale: CGFloat {
-        UIDevice.current.userInterfaceIdiom == .phone && UIDevice.current.orientation.isLandscape ? 1 : greatestPresentableHeightScale
+        #if os(visionOS)
+            return greatestPresentableHeightScale
+        #else
+            return UIDevice.current.userInterfaceIdiom == .phone && UIDevice.current.orientation.isLandscape ? 1 : greatestPresentableHeightScale
+        #endif
     }
 
     public static func expectedWidth(for window: UIWindow? = nil) -> CGFloat {
         let containerSize = keyWindowSize(for: window)
         if UIDevice.current.userInterfaceIdiom == .pad {
-            return min(containerSize.width * (1 - leastPresentableScale), maxAdaptiveWidth * UIScreen.main.scale)
+            #if os(visionOS)
+                return min(containerSize.width * (1 - leastPresentableScale), maxAdaptiveWidth * 2.0)
+            #else
+                return min(containerSize.width * (1 - leastPresentableScale), maxAdaptiveWidth * UIScreen.main.scale)
+            #endif
         } else {
             return containerSize.width
         }
@@ -32,7 +40,11 @@ public enum Dimensions {
 
     public static func keyWindowSize(for window: UIWindow? = nil) -> CGRect {
         guard let window = window ?? UIApplication.shared.adyen.mainKeyWindow else {
-            return UIScreen.main.bounds
+            #if os(visionOS)
+                return CGRect(x: 0, y: 0, width: 1280, height: 720)
+            #else
+                return UIScreen.main.bounds
+            #endif
         }
         return window.bounds
     }

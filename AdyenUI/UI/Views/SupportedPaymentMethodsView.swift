@@ -14,9 +14,17 @@ public class SupportedPaymentMethodLogosView: UIView {
     public struct Style: ViewStyle {
         public var backgroundColor: UIColor = .clear
         
+        private static var hairlineBorderWidth: CGFloat {
+            #if os(visionOS)
+                return 0.5
+            #else
+                return 1.0 / UIScreen.main.nativeScale
+            #endif
+        }
+
         public var images: ImageStyle = .init(
             borderColor: UIColor.Adyen.componentSeparator,
-            borderWidth: 1.0 / UIScreen.main.nativeScale,
+            borderWidth: Style.hairlineBorderWidth,
             cornerRadius: 3.0,
             clipsToBounds: true,
             contentMode: .scaleAspectFit

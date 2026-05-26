@@ -4,7 +4,11 @@
 // This file is open source and available under the MIT license. See the LICENSE file for more info.
 //
 
+#if !os(visionOS)
+
 import Foundation
 
 /// The 3DS2 SDK version.
 public let threeDS2SdkVersion: String = "2.4.4"
+
+#endif
